@@ -1,0 +1,22 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[
+scale =9,
+axis/.style = {very thick, <->, >=stealth'},
+dashed line/.style={dashed, thin},
+every node/.style={color=black}]
+\coordinate (y) at (0,0.5);
+\coordinate (x) at (1,0);
+\draw[axis] (y) node[above] {$y$} -- (0,0)node[below]{$0$} --  (x) node[right]{$x$};
+\draw[very thick] (.8,-.02)node[below]{$1$} -- (.8,.02);
+\draw[very thick] (.35,-.02) -- (.35,.02);
+\draw[very thick] (.4,-.02)node[below]{$0.5$} -- (.4,.02);
+\draw[very thick] (.45,-.02) -- (.45,.02);
+\draw[dashed] (.35, 0) --  (.35, .4) coordinate (a);
+\draw[dashed] (.45, 0) -- (.45, .4) coordinate (b);
+\draw[<->] (.45, .35) -- (.35, .35);
+\node[anchor=west,text width=10cm] at (.37, 0.4){\textbf{$\varepsilon$}} ;
+\end{tikzpicture}
+    \caption{Иллюстрация к ответу на вопрос}
+    \label{fig:q1}
+\end{figure}

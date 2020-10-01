@@ -1,0 +1,38 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[
+scale = 4.5,
+axis/.style = {very thick, ->, >=stealth'},
+dashed line/.style={dashed, thin},
+every node/.style={color=black}]
+\draw[axis] (0, 0) -- (1.0, 0) node(xline1)[right]{$x$};
+\draw[axis] (1.5, 0) -- (2.5, 0) node(xline2)[right]{$x$};
+\draw[axis] (3.0, 0) -- (4.0, 0) node(xline3)[right]{$x$};
+\draw[axis] (0,-0.004) -- (0, 1.0) node(yline1)[above]{$y$};
+\draw[axis] (1.5,-0.004) -- (1.5, 1.0) node(yline2)[above]{$y$};
+\draw[axis] (3.0,-0.004) -- (3.0, 1.0) node(yline3)[above]{$y$};
+\draw[dashed line] (.2, 0)node(dashed11)[below]{$x_1$} -- (.2,.8) coordinate(x11);
+\draw[dashed line] (.5, 0)node(dashed12)[below]{$x_2$} -- (.5,.6) coordinate(x12);
+\draw[dashed line] (.8, 0)node(dashed13)[below]{$x_3$} -- (.8,.4) coordinate(x13);
+\draw[dashed line] (1.7, 0)node(dashed21)[below]{$x_1$} -- (1.7,.6) coordinate(x21);
+\draw[dashed line] (2.0, 0)node(dashed22)[below]{$x_2$} -- (2.0,.8) coordinate(x22);
+\draw[dashed line] (2.3, 0)node(dashed23)[below]{$x_3$} -- (2.3,.4) coordinate(x23);
+\draw[dashed line] (3.2, 0)node(dashed31)[below]{$x_1$} -- (3.2,.4) coordinate(x31);
+\draw[dashed line] (3.5, 0)node(dashed32)[below]{$x_2$} -- (3.5,.6) coordinate(x32);
+\draw[dashed line] (3.8, 0)node(dashed33)[below]{$x_3$} -- (3.8,.8) coordinate(x33);
+\fill[black] (x11) circle (.6pt);
+\fill[black] (x12) circle (.6pt);
+\fill[black] (x13) circle (.6pt);
+\fill[black] (x21) circle (.6pt);
+\fill[black] (x22) circle (.6pt);
+\fill[black] (x23) circle (.6pt);
+\fill[black] (x31) circle (.6pt);
+\fill[black] (x32) circle (.6pt);
+\fill[black] (x33) circle (.6pt);
+\node[anchor=west,text width=6cm] at (.38, -.3){(a)} ;
+\node[anchor=west,text width=6cm] at (1.88, -.3){(b)} ;
+\node[anchor=west,text width=6cm] at (3.38, -.3){(c)} ;
+\end{tikzpicture}
+    \caption{Пример использования пассивного поиска.}
+    \label{fig:ex1}
+\end{figure}

@@ -1,0 +1,64 @@
+\begin{figure}[h!]
+    \begin{center}
+    \begin{tikzpicture}[
+scale = 7,
+axis/.style = {very thick, ->, >=stealth'},
+dashed line/.style={dashed, thin},
+every node/.style={color=black}]
+\draw[axis] (0, 0) -- (1.0, 0) node(xline1)[right]{$x$};
+\draw[very thick] (.8,-.05)node[below]{$1$} -- (.8,.05);
+\draw[very thick] (2.3,-.05)node[below]{$1$} -- (2.3,.05);
+\draw[very thick] (.8,-1.55)node[below]{$1$} -- (.8,-1.45);
+\draw[very thick] (2.3,-1.55)node[below]{$1$} -- (2.3,-1.45);
+\draw[axis] (0, -1.5) -- (1.0, -1.5) node(xline3)[right]{$x$};
+\draw[axis] (1.5, 0) -- (2.5, 0) node(xline2)[right]{$x$};
+\draw[axis] (1.5, -1.5) -- (2.5, -1.5) node(xline4)[right]{$x$};
+\draw[axis] (0,-0.004) node[below]{$0$} -- (0, 1.0) node(yline1)[above]{$y$};
+\draw[axis] (1.5,-0.004)node[below]{$0$} -- (1.5, 1.0) node(yline2)[above]{$y$};
+\draw[axis] (0,-1.504)node[below]{$0$} -- (0, -0.5) node(yline3)[above]{$y$};
+\draw[axis] (1.5,-1.504)node[below]{$0$} -- (1.5, -0.5) node(yline4)[above]{$y$};
+\node[anchor=west,text width=6cm] at (.38, -.2){(a)} ;
+\node[anchor=west,text width=6cm] at (1.88, -.2){(b)} ;
+\node[anchor=west,text width=6cm] at (.38, -1.7){(c)} ;
+\node[anchor=west,text width=6cm] at (1.88, -1.7){(d)};
+   \path
+    coordinate (start) at (0,.5)
+    coordinate (c1) at +(.3,.6)
+    coordinate (c2) at +(.6,.8)
+    coordinate (slut) at (.8,.3);
+    \draw[very thick] (start) .. controls (c1) and (c2) .. (slut);
+    \draw[dashed line] (.8,0)--(.8,.3);
+   \path
+    coordinate (start1) at (1.5,.3)
+    coordinate (c11) at +(1.7,.6)
+    coordinate (slut1) at (2.3,.8);
+    \draw[very thick] (start1) .. controls (c11)  .. (slut1);
+    \draw[dashed line] (2.3,0)--(slut1);
+   \path
+    coordinate (start2) at (0, -1)
+    coordinate (mid2) at(0.05, -.95)
+    coordinate (cut2) at(.1, -.9);
+    \draw[very thick] (start2) .. controls (mid2) .. (cut2);
+    \path
+    coordinate (left) at (.1, -.8)
+    coordinate (top) at(.4, -.6)
+    coordinate (right) at(.7, -.8);
+    \draw[very thick] (left) .. controls (top) .. (right);
+    \path
+    coordinate (start3) at (.7, -.9)
+    coordinate (mid3) at(.75, -.95)
+    coordinate (cut3) at(.8, -1);
+    \draw[very thick] (start3) .. controls (mid3) .. (cut3);
+    \draw[dashed line](start3)  -- (right);
+    \draw[dashed line](cut2)  -- (left);
+    \path
+    coordinate (start4) at (1.5, -.704)
+    coordinate (b) at(2.0, -1.504)
+    coordinate (c) at(2.1, -.4)
+    coordinate (d) at(2.3, -1.504);
+    \draw[very thick] (start4) .. controls (b) and (c)  .. (d);
+\end{tikzpicture}
+    \caption{Пример унимодальных и не унимодальных функций}
+    \label{fig:unimodal}
+    \end{center}
+\end{figure}

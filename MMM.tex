@@ -1,0 +1,93 @@
+\chapter{Методы многомерной минимизации}
+\section{Основные определения}
+Далее будем говорить про функции многих переменных, то есть однозначное соответствие $f(\vec x) = y$. Здесь $y$ - скаляр, а $\vec x$ - вектор столбец:
+\begin{equation}
+    \vec x = \left[
+    \begin{array}{c}
+         x_1  \\
+         x_2  \\
+         \vdots \\
+         x_n
+    \end{array}
+    \right]
+\end{equation}
+
+Положительно определенной матрицей будем называть симетричную квадратную матрицу $a^T=a$, такую, что $f(\vec x) = {\vec x}^Ta{\vec x} > 0$ для любого $\vec x \neq \vec 0$. Для того, чтобы матрица была положительно определенной необходимо и достаточно, чтобы все собственные значения $\lambda$ данной матрицы были положительны, то есть при решении уравнения:
+\begin{equation}
+    \det \left( a_{ik} - \lambda\delta_{ik} \right)=0
+\end{equation}
+Здесь $\delta_{ik}$ - символ Кронекера, то есть:
+\begin{equation*}
+\delta_{ik} =
+\left\{
+\begin{array}{lr}
+1 & \text{ для } i = k\\
+0 & \text{ для } i \neq k
+\end{array}
+\right.
+\end{equation*}
+Пусть в многомерном пространстве $\vec x_0$ - первая точка, то есть точка с которой мы начинаем поиск минимума, а $\vec x^*$ - точка минимума функции. Алгоритм многомерной минимизации должен обеспечивать:
+\begin{itemize}
+    \item Направление движения к $\vec x^*$
+    \item Задавать длину шага
+\end{itemize}
+Одной формулой требования к алгоритму можно задать так:
+\begin{equation}
+    \vec x_{k+1} =\vec x_k + \alpha_k \vec p
+    \label{xk}
+\end{equation}
+Здесь $ \vec x_{k+1}$ следующая точка, получаемая с помощью алгоритма, $ \vec x_{k}$ - текущая точка, с которой производится переход в $ \vec x_{k+1}$, $\alpha_k$ - длина шага на $k$-ом этапе (скаляр) и $\vec p_k = \vec x_{k+1} - \vec x_{k} $ - вектор направления.
+
+Гипотетически наша функция имеет аналитический вид, поэтому мы можем разложить ее в ряд Тейлора в некоторой окрестности точки $\vec x_k$:
+\begin{equation}
+    f(\vec x) = f(\vec x_k) + \alpha(f_{kc}',\vec p_k) + \frac{\alpha^2}{2}(f_{kc}'' \, \vec p_k,\vec p_k)
+    \label{Teylor}
+\end{equation}
+Здесь стоит расписать обозначения, применимые в формуле (\ref{Teylor}):
+\begin{equation*}
+    f'_{kc} = \left[ 
+    \begin{array}{c}
+         \left.\frac{\partial f(\vec x)}{\partial x_1}\right|_{x_{kc_1}} \\
+         \left.\frac{\partial f(\vec x)}{\partial x_2}\right|_{x_{kc_2}} \\
+         \vdots \\
+         \left.\frac{\partial f(\vec x)}{\partial x_n}\right|_{x_{kc_n}}
+         \end{array}
+    \right]^T
+\end{equation*}
+\begin{equation*}
+    f_{kc}'' = \left[ 
+    \begin{array}{cccc}
+         \left.\frac{\partial^2 f(\vec x)}{\partial x_1^2}\right|_{x_{kc_1}} &
+         \left.\frac{\partial^2 f(\vec x)}{\partial x_1 \partial x_2}\right|_{x_{kc_1}} &
+         \ldots &  \left.\frac{\partial^2 f(\vec x)}{\partial x_1 \partial x_n}\right|_{x_{kc_1}} \\
+         \left.\frac{\partial^2 f(\vec x)}{\partial x_2 \partial x_1}\right|_{x_{kc_2}} &
+         \left.\frac{\partial^2 f(\vec x)}{\partial x_2^2}\right|_{x_{kc_2}} &
+         \ldots &  \left.\frac{\partial^2 f(\vec x)}{\partial x_2 \partial x_n}\right|_{x_{kc_2}} \\
+         \vdots & \vdots & \ddots & \vdots \\
+         \left.\frac{\partial^2 f(\vec x)}{\partial x_n \partial x_1}\right|_{x_{kc_n}} &
+         \left.\frac{\partial^2 f(\vec x)}{\partial x_n \partial x_2}\right|_{x_{kc_n}} &
+         \ldots &  \left.\frac{\partial^2 f(\vec x)}{\partial x_n^2}\right|_{x_{kc_n}}
+    \end{array}
+    \right]
+\end{equation*}
+Дифференцирование в точке $\vec x_k$ фактически означает дифференцирование в окрестности, близ точки  $\vec x_k$, то есть типа в интервале $[x_k, x_{kc}]$, где $x_{kc}$ точка, значение которой дается формулой:
+\begin{equation*}
+   \vec x_{kc} =\vec x_k + \theta\left(\vec x - \vec x_k\right) \qquad \theta \epsilon [0; 1]
+\end{equation*}
+
+Так как мы ищем минимум при условии, что движение направлено к точке минимума, то $f(\vec x_{min}) < f(\vec x_k) < f(\vec x_0)$, где $\vec x_{min}$ - точка фактического минимума функции. 
+
+Считаем, что разложение происходит настолько близко к точке $\vec x_{min}$, что функция является невыпуклой, а значит матрица второй производной положительно определена, что дает нам сделать утверждение о знаке второго члена разложения ряда (\ref{Teylor}). Поскольку, как мы говорили выше, для положительно определенной матрицы $\left(f_{kc}'' \, \vec p_k,\vec p_k\right) > 0$, а $\frac{\alpha^2}{2} \geqslant 0$, то получается, что слагаемое второго порядка положительно. Но так как есть необходимость в том, чтобы в точке, ближней к точке фактического минимума функции ($f(\vec x) < f(\vec x_k)$), то слагаемое первого порядка $\alpha(f_{kc}',\vec p_k) < 0$, что подводит нас к первому методу многомерной минимизации.
+
+\section{Градиентный метод}
+В данном методе в качестве $\vec p_k$ просто берется выражение $-f'(\vec x_k) = -f'_k$. Тогда выражение (\ref{xk}) примет вид:
+\begin{equation}
+    \vec x_{k+1} = \vec x_k - \alpha_k f'(\vec x_k) \textbf{, } \quad \alpha_k > 0 \text{, } k = 0, 1 \ldots
+\end{equation}
+Выбором такого значения $\vec p_k$ мы определили направление движения, а также уменьшения функции при приближении к точке $(f'(\vec x_k), p) < 0$. Осталось найти шаг $\alpha_k$, где $k$ -индекс итерации.
+
+Рассмотрим процесс выбора шага на примере.
+Пусть рассматриваемая функция имеет аналитическое выражение:\
+\begin{equation}
+    f(x,y) = \frac12\left(\frac{x^2}{a^2} + \frac{y^2}{b^2}\right)
+\end{equation}
