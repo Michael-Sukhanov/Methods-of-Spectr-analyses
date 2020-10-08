@@ -1,0 +1,23 @@
+\section{Метод Ньютона с регулировкой шага} \label{NewtMeth}
+Возьмем гипотетическое разложение исследуемой функции $f(\vec x)$ в ряд Тейлора в точке $\vec y$ с точностью до второго порядка и обозначим его через $\psi(\vec x)$:
+\begin{equation}
+    \psi(\vec x) = f(\vec y) + \left(f'(\vec y), \vec x - \vec y\right) + \frac12\left(f''(\vec y)(\vec x - \vec y), (\vec x - \vec y)\right)
+\end{equation}
+Минимизация данного выражения (путем нахождения минимума) дает оптимальное значение вектору $\vec p$:
+\begin{equation}
+    \vec p= \vec x - \vec y = - \left(f''(\vec y)\right)^{-1}f'(\vec y)
+    \label{p_newton}
+\end{equation}
+Проверим условие для движения к минимуму, которое было представлено в подразделе введения $\left(f'(\vec y), \vec p\right) < 0$. Умножаем слева выражение (\ref{p_newton}) на матрицу Гессе ($f''(\vec y)$):
+\begin{equation}
+    f''(\vec y)\vec p = - f'(\vec y)
+\end{equation}
+Умножаем это выражение справа на $\vec p$ и убеждаемся в действительности условия:
+\begin{equation}
+    0<\left(f''(\vec y)\vec p, \vec p\right) = - \left(f'(\vec y), \vec p\right)
+\end{equation}
+Тогда выражение (\ref{xk}) становится:
+\begin{equation}
+    \vec x_{k+1} = \vec x_k - \alpha_k (f''(\vec x_k))^{-1} f'(\vec x_k) \textbf{, } \quad \alpha_k > 0 \text{, } k = 0, 1 \ldots
+\end{equation}
+Если $\alpha_k = const$ для любой $k$, то данный метод называется метод Ньютона. В случае, если $\alpha_k \neq const$ при любом $k$, то метод называется методом Ньютона с регулировкой шага.

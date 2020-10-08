@@ -1,0 +1,33 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[scale = 4,
+axis/.style = {very thick, <->, >=stealth'},
+dashed line/.style = {dashed, very thick},
+plane line/.style = {very thick, color = brown}]
+\tikzset{mypoints/.style={fill=white,draw=black,thick}}
+\def\aa{30} \def\ba{15} \def\ab{20} \def\bb{10} \def\ac{10} \def\bc{5}
+\draw[axis] (2, 0) node[right]{$x$} -- (0, 0) -- (0, 1) node[above]{$y$};
+\draw[dashed](-2, 0) -- (0, 0) -- (0,-1);
+\fill[mypoints] circle (2pt);
+\fill[black] (0, 0) circle (1pt) node[below, shift={(0:20pt)}]{$f\left(x,y\right)$};
+\draw[name path=ellipse,red,very thick]
+		(0,0) circle[x radius = \aa pt, y radius = \ba pt];
+\draw[name path=ellipseb,blue,very thick]
+		(0,0) circle[x radius = \ab pt, y radius = \bb pt];
+\draw[name path=ellipsec,green,very thick]
+		(0,0) circle[x radius = \ac pt, y radius = \bc pt];
+\draw[name path = plane_a ,plane line] (0, -0.85) -- (1.5, .1);
+% \coordinate[label=right:$(x_0, y_0)$] (xo) at (intersection of (0, -0.85) -- (1.5, .1) and ellipse); 
+\path [name intersections={of = ellipse and plane_a}];
+\coordinate (X0) at (intersection-1);
+\fill[mypoints] (X0) +(-0.95cm, +1.5cm) coordinate (Xend) circle (0pt) ;
+\fill[mypoints] (X0) +(-0.3166cm, +.5cm) coordinate (X1) circle (0pt) ;
+\fill[mypoints] (X1) +(-0.2cm, -.2cm) coordinate (X2) circle (0pt) ;
+\draw[->, very thick, color = brown] (X0) -- (Xend);
+\fill[mypoints] (X0) circle (1pt) node[right, shift={(0:15pt)}]{$(x_0, y_0)$};
+\fill[mypoints] (X1) circle (1pt) node[right]{$(x_1, y_1)$};
+\node[anchor=west,text width=6cm] at (-2, 1){\textcolor{red}{$f(x,y)$}$>$\textcolor{blue}{$f(x,y)$}$>$\textcolor{green}{$f(x,y)$}} ;
+    \end{tikzpicture}
+    \caption{Иллюстрация первого шага метода антиградиента}
+    \label{fig:antigradient}
+\end{figure}
